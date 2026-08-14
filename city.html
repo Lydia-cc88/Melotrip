@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Tokyo Sound Story — Melotrip</title>
+  <link rel="stylesheet" href="shared.css">
+  <link rel="stylesheet" href="palette.css">
+</head>
+<body class="sound-story-body">
+  <header class="site-header">
+    <a class="brand" href="index.html">MELOTRIP</a>
+    <nav class="site-nav" aria-label="Primary navigation">
+      <a href="explore.html">Explore</a>
+      <a class="active" href="city.html">Sound Stories</a>
+      <a href="studio.html">Creation Universe</a>
+      <a href="gallery.html">Melody Editor</a>
+      <a href="about.html">About & Mobile</a>
+    </nav>
+  </header>
+
+  <main class="page sound-story-page">
+    <section class="story-particle-hero" id="storyParticleHero" aria-label="Interactive sound story opening">
+      <canvas id="storyParticleCanvas" class="story-particle-canvas" aria-hidden="true"></canvas>
+      <div class="story-tap-wrap">
+        <button id="storyTapButton" class="story-tap-button" type="button">
+          <svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+          <span>Tap to Play</span>
+        </button>
+      </div>
+    </section>
+
+    <div class="sound-story-content" id="soundStoriesContent">
+      <section class="city-hero">
+        <div>
+          <span class="kicker">SOUND CITY 001 · JAPAN</span>
+          <h1 class="page-title">Tokyo</h1>
+          <div class="actions">
+            <button id="cityMixButton" class="pill dark" type="button">▶ Play city mix</button>
+            <button id="saveCityButton" class="pill" type="button" aria-pressed="false">♡ Save city</button>
+          </div>
+        </div>
+        <div class="city-facts">
+          <p class="lede">A city announced through departure melodies, crossings, vending machines and fragments of everyday rhythm.</p>
+          <div class="fact"><span>Sounds in archive</span><b id="visibleSoundCount">08</b></div>
+          <div class="fact"><span>Contributors</span><b>08</b></div>
+          <div class="fact"><span>Average journey</span><b>04:32</b></div>
+        </div>
+      </section>
+
+      <div class="tabs" role="toolbar" aria-label="Filter sound stories">
+        <button class="active" type="button" data-filter="all" aria-pressed="true">All sounds</button>
+        <button type="button" data-filter="transport" aria-pressed="false">Transport</button>
+        <button type="button" data-filter="street" aria-pressed="false">Street</button>
+        <button type="button" data-filter="nature" aria-pressed="false">Nature</button>
+        <button type="button" data-filter="everyday" aria-pressed="false">Everyday</button>
+      </div>
+
+      <section class="sound-grid" aria-label="Eight interactive sound motifs">
+        <article class="sound-card" data-category="transport" data-pattern="tokyo" data-color="#064CFF">
+          <span class="kicker">SOUND 01 · 00:12</span><div class="source-scene" style="--scene-x:0%;--scene-y:0%"></div>
+          <div class="pixel-motif-shell"><canvas class="pixel-motif" aria-label="Yamanote Departure pixel sound motif"></canvas><button class="motif-audio" type="button" aria-label="Play Yamanote Departure"><span></span></button></div>
+          <span class="reveal-note">Hover to reveal</span><strong class="card-name">Yamanote Departure</strong>
+        </article>
+        <article class="sound-card" data-category="street" data-pattern="kyoto" data-color="#FFF200">
+          <span class="kicker">SOUND 02 · 00:19</span><div class="source-scene" style="--scene-x:33.333%;--scene-y:0%"></div>
+          <div class="pixel-motif-shell"><canvas class="pixel-motif" aria-label="Shibuya Crossing pixel sound motif"></canvas><button class="motif-audio" type="button" aria-label="Play Shibuya Crossing"><span></span></button></div>
+          <span class="reveal-note">Hover to reveal</span><strong class="card-name">Shibuya Crossing</strong>
+        </article>
+        <article class="sound-card" data-category="everyday" data-pattern="seville" data-color="#FF3D00">
+          <span class="kicker">SOUND 03 · 00:08</span><div class="source-scene" style="--scene-x:66.666%;--scene-y:0%"></div>
+          <div class="pixel-motif-shell"><canvas class="pixel-motif" aria-label="Vending Machine pixel sound motif"></canvas><button class="motif-audio" type="button" aria-label="Play Vending Machine"><span></span></button></div>
+          <span class="reveal-note">Hover to reveal</span><strong class="card-name">Vending Machine</strong>
+        </article>
+        <article class="sound-card" data-category="nature" data-pattern="florence" data-color="#FF1791">
+          <span class="kicker">SOUND 04 · 00:24</span><div class="source-scene" style="--scene-x:100%;--scene-y:0%"></div>
+          <div class="pixel-motif-shell"><canvas class="pixel-motif" aria-label="Summer Cicadas pixel sound motif"></canvas><button class="motif-audio" type="button" aria-label="Play Summer Cicadas"><span></span></button></div>
+          <span class="reveal-note">Hover to reveal</span><strong class="card-name">Summer Cicadas</strong>
+        </article>
+        <article class="sound-card" data-category="street" data-pattern="london" data-color="#F4FF00">
+          <span class="kicker">SOUND 05 · 00:16</span><div class="source-scene" style="--scene-x:0%;--scene-y:50%"></div>
+          <div class="pixel-motif-shell"><canvas class="pixel-motif" aria-label="Market Morning pixel sound motif"></canvas><button class="motif-audio" type="button" aria-label="Play Market Morning"><span></span></button></div>
+          <span class="reveal-note">Hover to reveal</span><strong class="card-name">Market Morning</strong>
+        </article>
+        <article class="sound-card" data-category="nature" data-pattern="paris" data-color="#006CFF">
+          <span class="kicker">SOUND 06 · 00:21</span><div class="source-scene" style="--scene-x:33.333%;--scene-y:50%"></div>
+          <div class="pixel-motif-shell"><canvas class="pixel-motif" aria-label="Rain on Platform pixel sound motif"></canvas><button class="motif-audio" type="button" aria-label="Play Rain on Platform"><span></span></button></div>
+          <span class="reveal-note">Hover to reveal</span><strong class="card-name">Rain on Platform</strong>
+        </article>
+        <article class="sound-card" data-category="everyday" data-pattern="istanbul" data-color="#FF4A00">
+          <span class="kicker">SOUND 07 · 00:28</span><div class="source-scene" style="--scene-x:66.666%;--scene-y:50%"></div>
+          <div class="pixel-motif-shell"><canvas class="pixel-motif" aria-label="Temple Courtyard pixel sound motif"></canvas><button class="motif-audio" type="button" aria-label="Play Temple Courtyard"><span></span></button></div>
+          <span class="reveal-note">Hover to reveal</span><strong class="card-name">Temple Courtyard</strong>
+        </article>
+        <article class="sound-card" data-category="transport" data-pattern="rio" data-color="#00B95C">
+          <span class="kicker">SOUND 08 · 00:14</span><div class="source-scene" style="--scene-x:100%;--scene-y:50%"></div>
+          <div class="pixel-motif-shell"><canvas class="pixel-motif" aria-label="Harbour Festival pixel sound motif"></canvas><button class="motif-audio" type="button" aria-label="Play Harbour Festival"><span></span></button></div>
+          <span class="reveal-note">Hover to reveal</span><strong class="card-name">Harbour Festival</strong>
+        </article>
+      </section>
+    </div>
+  </main>
+  <footer class="footer"><strong>MELOTRIP</strong><small>Explore · Capture · Create · Share</small></footer>
+  <script src="global-cursor.js"></script>
+  <script src="shared.js"></script>
+  <script src="story-intro.js"></script>
+  <script src="city-motifs.js"></script>
+  <script src="sound-stories.js"></script>
+</body>
+</html>

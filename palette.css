@@ -1,0 +1,503 @@
+:root{
+  --genesis-black:#06080b;
+  --genesis-lemon:#f4ec32;
+  --genesis-deep-blue:#123f85;
+  --genesis-blue:#3e8fce;
+  --genesis-sky:#9fdcf4;
+  --genesis-coral:#f15a43;
+  --genesis-orange:#ff8a45;
+  --genesis-pink:#f29ab2;
+  --genesis-cream:#fff1bd;
+  --genesis-soft-cream:#fff8df;
+  --genesis-ink:#122947;
+}
+
+/* A colour-only particle glaze shared across the existing page system. */
+body::after{
+  content:"";
+  position:fixed;
+  inset:0;
+  z-index:9998;
+  pointer-events:none;
+  opacity:.22;
+  background-image:
+    radial-gradient(circle,#f4ec32 0 1.2px,transparent 1.8px),
+    radial-gradient(circle,#3e8fce 0 1px,transparent 1.7px),
+    radial-gradient(circle,#f15a43 0 .9px,transparent 1.6px);
+  background-position:17px 31px,83px 14px,46px 92px;
+  background-size:137px 113px,181px 149px,223px 173px;
+  animation:genesis-particle-glimmer 7s ease-in-out infinite alternate;
+}
+@keyframes genesis-particle-glimmer{0%{opacity:.11}45%{opacity:.24}100%{opacity:.16}}
+
+/* 00 — Opening: black and lemon-yellow contrast. */
+.intro-body{background:var(--genesis-black)!important;color:var(--genesis-lemon)!important}
+.intro-body .intro{background:radial-gradient(circle at 50% 53%,#142239 0,#080d14 38%,#020304 82%)!important}
+.intro-body .intro-title{color:var(--genesis-lemon);text-shadow:0 0 22px rgba(244,236,50,.26)!important}
+.intro-body .intro-progress circle{stroke:var(--genesis-lemon)!important}
+.intro-body .skip-intro,.intro-body .sound-intro{color:#f7f0a7!important;border-color:rgba(244,236,50,.56)!important}
+.intro-body .skip-intro:hover,.intro-body .sound-intro:hover,.intro-body .sound-intro.enabled{color:var(--genesis-lemon)!important}
+.intro-body::after{opacity:.5;mix-blend-mode:screen;background-image:radial-gradient(circle,#f4ec32 0 1.25px,transparent 1.9px),radial-gradient(circle,#fff6a0 0 .8px,transparent 1.5px);background-size:113px 89px,179px 157px}
+
+/* 01 — Explore: lemon atmosphere with deep and light blue structure. */
+.explore-body{--melotrip-paper:var(--genesis-cream);--melotrip-ink:var(--genesis-ink);--melotrip-muted:#375d83;--melotrip-line:rgba(18,63,133,.25);background:var(--genesis-cream)!important;color:var(--genesis-ink)!important}
+.explore-body .globe-explore{background:radial-gradient(circle at 50% 48%,rgba(255,248,203,.98) 0,rgba(244,236,50,.62) 34%,rgba(159,220,244,.72) 69%,rgba(62,143,206,.76) 100%)!important}
+.explore-body .globe-explore::before{background:radial-gradient(circle at 22% 35%,rgba(244,236,50,.42),transparent 28%),radial-gradient(circle at 76% 28%,rgba(18,63,133,.34),transparent 27%),radial-gradient(circle at 67% 77%,rgba(159,220,244,.4),transparent 28%),radial-gradient(circle at 31% 73%,rgba(241,90,67,.2),transparent 27%)!important}
+.explore-body .globe-explore::after{background:linear-gradient(180deg,rgba(255,241,189,.04),rgba(18,63,133,.12))!important;box-shadow:inset 0 0 120px rgba(18,63,133,.16)!important}
+.explore-body .site-header{background:linear-gradient(180deg,rgba(255,241,189,.96),rgba(255,241,189,0))!important}
+.explore-body .site-nav{color:#315b87}.explore-body .site-nav a:hover,.explore-body .site-nav a.active{color:#0c315e}.explore-body .site-nav a.active{border-color:#0c315e}
+.explore-body .journey-title{color:#092f64;text-shadow:0 2px 22px rgba(255,241,189,.95)!important}
+.explore-body .explore-question,.explore-body .coordinate-card{border-color:rgba(18,63,133,.32)!important;background:rgba(255,241,189,.83)!important;box-shadow:0 20px 62px rgba(18,63,133,.13)!important}
+.explore-body .explore-question div{border-color:rgba(18,63,133,.48)}.explore-body .explore-question label,.explore-body .explore-question small,.explore-body .coordinate-card p,.explore-body .coordinate-card>span{color:#315b87}.explore-body .explore-question input{color:#092f64}
+.explore-body .coordinate-actions button,.explore-body .coordinate-actions a{border-color:rgba(18,63,133,.32);background:rgba(159,220,244,.26)}
+.explore-body .coordinate-actions button:hover,.explore-body .coordinate-actions a:hover{border-color:#123f85;background:#9fdcf4}
+.explore-body .melotrip-cursor{border-color:#123f85!important}.explore-body .melotrip-cursor i{background:#123f85!important}.explore-body .melotrip-cursor.over-coordinate{background:rgba(244,236,50,.25)!important;border-color:#f15a43!important}.explore-body .melotrip-cursor.over-coordinate i{background:#f15a43!important}
+
+/* 02 — Sound Stories: coral, pink and milk-yellow. */
+.sound-story-body{--melotrip-paper:var(--genesis-soft-cream);--melotrip-ink:#521f31;--melotrip-muted:#8a4b55;--melotrip-line:rgba(241,90,67,.28);background:var(--genesis-soft-cream)!important;color:#521f31!important}
+.sound-story-body .site-header{background:linear-gradient(180deg,rgba(255,241,189,.98),rgba(255,241,189,0))!important}
+.sound-story-body .story-particle-hero{background:radial-gradient(circle at 50% 45%,#fff8df 0,#fff1bd 40%,#f29ab2 100%)!important;border-color:rgba(241,90,67,.3)!important}
+.sound-story-body .story-tap-button{border-color:rgba(241,90,67,.48)!important;background:rgba(255,241,189,.82)!important;color:#8f2d37!important}
+.sound-story-body .story-tap-button:hover{background:#f15a43!important;color:#fff8df!important;border-color:#f15a43!important}
+.sound-story-body .sound-story-content{background:linear-gradient(180deg,#fff1bd 0,#fff8df 28%,#f8c2c8 100%)!important}
+.sound-story-body .city-hero{background:linear-gradient(135deg,rgba(255,241,189,.88),rgba(242,154,178,.42))}
+.sound-story-body .tabs{background:rgba(255,241,189,.86)!important;border-color:rgba(241,90,67,.28)!important}.sound-story-body .tabs button{color:#a04a4e!important}.sound-story-body .tabs button.active{background:#f15a43!important;color:#fff8df!important}
+.sound-story-body .sound-card{border-color:rgba(241,90,67,.24)!important;background:#fff1bd!important}.sound-story-body .sound-card:nth-child(3n+2){background:#f7b3c1!important}.sound-story-body .sound-card:nth-child(3n){background:#ffb06f!important}
+.sound-story-body .motif-audio{background:#521f31!important;color:#fff1bd!important}.sound-story-body .motif-audio:hover{background:#f15a43!important}
+.sound-story-body .pill.dark{background:#f15a43!important;color:#fff8df!important;border-color:#f15a43!important}.sound-story-body .pill{border-color:rgba(241,90,67,.42)!important;background:rgba(255,248,223,.62)!important;color:#8f2d37!important}
+.sound-story-body .footer{background:#f15a43;color:#fff1bd;border-color:#f15a43}.sound-story-body .footer small{color:#fff1bd}
+
+/* 03 — Creation Universe: pale blue, cream and orange-red. */
+.universe-body{--paper:#dff3fb;--ink:#11365e;--muted:#496d8c;--faint:#7195ac;--line:rgba(18,63,133,.24);--like:#f15a43;background:#dff3fb!important;color:#11365e!important}
+.universe-body .creation{background:radial-gradient(circle at 50% 47%,#fff8df 0,#dff3fb 44%,#9fdcf4 74%,#f7a184 118%)!important}
+.universe-body .creation::after{box-shadow:inset 0 0 150px rgba(18,63,133,.16)!important}
+.universe-body .wordmark,.universe-body .bottomnav{background:radial-gradient(ellipse at center,rgba(255,248,223,.98) 0,rgba(223,243,251,.87) 57%,rgba(223,243,251,0) 82%)!important}
+.universe-body .index-trigger{background:rgba(255,241,189,.85)!important;color:#123f85!important}
+.universe-body .focus{background:rgba(255,248,223,.91)!important;border-color:rgba(241,90,67,.3)!important;box-shadow:0 22px 70px rgba(18,63,133,.13)!important}
+.universe-body .focus-actions button{border-color:rgba(18,63,133,.28)!important;background:rgba(159,220,244,.28)!important}.universe-body .focus-actions button:hover{border-color:#f15a43!important;background:#f15a43!important;color:#fff8df!important}
+.universe-body .index-view{background:linear-gradient(145deg,#dff3fb 0,#fff8df 52%,#f8c2c8 125%)!important}.universe-body .index-head{background:rgba(223,243,251,.94)!important}.universe-body .grid-image{box-shadow:0 8px 22px rgba(18,63,133,.17)!important}.universe-body .grid-card em,.universe-body .material .heart{background:rgba(255,241,189,.9)!important}
+.universe-body .mode-row button.active::after{background:#f15a43!important}.universe-body .mode-row button:hover,.universe-body .mode-row button.active,.universe-body .editor-entry.ready{color:#123f85!important}
+
+/* 04 — Melody Editor: blue field, then warm collection. */
+.melody-editor-body{--melotrip-paper:#dff3fb;--melotrip-ink:#102f59;--melotrip-muted:#426988;--melotrip-line:rgba(18,63,133,.24);background:#dff3fb!important;color:#102f59!important}
+.melody-editor-body .site-header{background:linear-gradient(180deg,rgba(159,220,244,.98),rgba(159,220,244,0))!important}
+.melody-editor-body .wave-editor-hero{background:radial-gradient(circle at 50% 43%,#fff1bd 0,#9fdcf4 50%,#3e8fce 100%)!important}
+.melody-editor-body .wave-editor-fog{background:radial-gradient(circle at 50% 52%,transparent 0 30%,rgba(18,63,133,.13) 100%)!important}
+.melody-editor-body .wave-control-panel,.melody-editor-body .editor-text-button{background:rgba(255,241,189,.78)!important;border-color:rgba(18,63,133,.33)!important;color:#123f85!important}
+.melody-editor-body .wave-mode-tabs button.active,.melody-editor-body .ai-variation,.melody-editor-body .editor-save,.melody-editor-body .editor-round-play{background:#123f85!important;color:#fff1bd!important;border-color:#123f85!important}
+.melody-editor-body .melody-library{background:linear-gradient(155deg,#fff1bd 0,#fff8df 35%,#f29ab2 78%,#f15a43 130%)!important}
+.melody-editor-body .melody-track{border-color:rgba(241,90,67,.28)!important}.melody-editor-body .melody-track:hover,.melody-editor-body .melody-track.active{background:rgba(255,248,223,.42)!important}
+.melody-editor-body .melody-track:nth-child(4n+1){--c1:#f15a43!important;--c2:#fff1bd!important}.melody-editor-body .melody-track:nth-child(4n+2){--c1:#123f85!important;--c2:#9fdcf4!important}.melody-editor-body .melody-track:nth-child(4n+3){--c1:#f29ab2!important;--c2:#ff8a45!important}.melody-editor-body .melody-track:nth-child(4n){--c1:#f4ec32!important;--c2:#3e8fce!important}
+.melody-editor-body .track-action{border-color:rgba(18,63,133,.3)!important}.melody-editor-body .track-action:hover,.melody-editor-body .track-action.active{background:#123f85!important;color:#fff1bd!important;border-color:#123f85!important}
+
+/* 05 — About & Mobile: a controlled sequence of the shared palette. */
+.about-mobile-body{--melotrip-paper:var(--genesis-soft-cream);--melotrip-ink:#123f85;--melotrip-muted:#416781;--melotrip-line:rgba(18,63,133,.22);background:var(--genesis-soft-cream)!important;color:#123f85!important}
+.about-mobile-body .site-header{background:linear-gradient(180deg,rgba(255,248,223,.97),rgba(255,248,223,0))!important}
+.about-mobile-body .about-opening{background:linear-gradient(145deg,#fff8df 0,#fff1bd 66%,#f29ab2 145%)!important}
+.about-mobile-body .about-process article:nth-child(1){background:#f4ec32}.about-mobile-body .about-process article:nth-child(2){background:#9fdcf4}.about-mobile-body .about-process article:nth-child(3){background:#f29ab2}.about-mobile-body .about-process article:nth-child(4){background:#ff8a45}
+.about-mobile-body .mobile-bridge{background:linear-gradient(120deg,#9fdcf4 0,#fff1bd 54%,#f15a43 140%)!important}.about-mobile-body .mobile-connect-card{background:rgba(255,248,223,.86)!important;border-color:rgba(18,63,133,.3)!important}.about-mobile-body .mobile-qr{background:repeating-conic-gradient(#123f85 0 25%,transparent 0 50%) 50%/34px 34px!important;box-shadow:inset 0 0 0 22px #fff1bd!important}.about-mobile-body .mobile-qr span{background:#fff1bd!important}
+.about-mobile-body .about-principle{background:linear-gradient(135deg,#f29ab2,#fff1bd)!important}.about-mobile-body .about-contact{background:#123f85!important;color:#fff1bd!important}.about-mobile-body .about-contact .section-label,.about-mobile-body .about-contact a{color:#fff1bd!important;border-color:rgba(255,241,189,.52)!important}.about-mobile-body .contact-socials a:hover{background:#f4ec32!important;border-color:#f4ec32!important;color:#123f85!important}
+.about-mobile-body .pill.dark{background:#123f85!important;color:#fff1bd!important;border-color:#123f85!important}.about-mobile-body .pill{background:rgba(255,248,223,.62)!important;border-color:rgba(18,63,133,.32)!important;color:#123f85!important}
+
+/* Legacy result page, kept in the same colour family. */
+body:not([class]) .result-art{background:#fff1bd;border-color:#3e8fce}body:not([class]) .chapters{background:#dff3fb;border-color:#3e8fce}body:not([class]) .play{background:#123f85;color:#fff1bd}
+
+@media(prefers-reduced-motion:reduce){body::after{animation:none}}
+
+/* 2026-07 refinement — luminous gradient story cards. */
+.sound-story-body .sound-card{
+  background:linear-gradient(145deg,#fff8ce 0%,#f4ec32 48%,#9fdcf4 132%)!important;
+}
+.sound-story-body .sound-card:nth-child(2){background:linear-gradient(145deg,#f7a8d2 0%,#f29ab2 48%,#fff1bd 112%)!important}
+.sound-story-body .sound-card:nth-child(3){background:linear-gradient(145deg,#9fdcf4 0%,#ffc45e 54%,#ff7954 118%)!important}
+.sound-story-body .sound-card:nth-child(4){background:linear-gradient(145deg,#b7e9fa 0%,#fff1bd 54%,#f29ab2 125%)!important}
+.sound-story-body .sound-card:nth-child(5){background:linear-gradient(145deg,#f29ab2 0%,#88cff1 52%,#fff451 120%)!important}
+.sound-story-body .sound-card:nth-child(6){background:linear-gradient(145deg,#fff1bd 0%,#ffbf62 48%,#f15a43 126%)!important}
+.sound-story-body .sound-card:nth-child(7){background:linear-gradient(145deg,#f7a2cf 0%,#b8e9f8 54%,#f4ec32 128%)!important}
+.sound-story-body .sound-card:nth-child(8){background:linear-gradient(145deg,#74bfea 0%,#fff1bd 56%,#f29ab2 128%)!important}
+.sound-story-body .pixel-motif-shell::before{
+  content:"";
+  position:absolute;
+  inset:12%;
+  z-index:-1;
+  border-radius:50%;
+  background:radial-gradient(circle,rgba(255,255,255,.82) 0,rgba(255,248,197,.45) 38%,rgba(255,255,255,0) 72%);
+  filter:blur(18px);
+}
+.sound-story-body .pixel-motif{filter:saturate(1.42) brightness(1.08) drop-shadow(0 0 5px rgba(255,255,255,.6))}
+.sound-story-body .sound-card:hover .pixel-motif{filter:saturate(1.62) brightness(1.12) drop-shadow(0 0 9px rgba(255,255,255,.85))}
+
+/* 2026-07 refinement — orange, yellow and blue Creation Universe. */
+.universe-body{
+  --paper:#fff0bc;
+  --ink:#103e6d;
+  --muted:#486f83;
+  --faint:#6d8d95;
+  --line:rgba(16,62,109,.24);
+  --like:#f04f36;
+  background:#fff0bc!important;
+}
+.universe-body .creation{
+  background:
+    radial-gradient(circle at 50% 47%,rgba(255,248,207,.95) 0%,rgba(255,248,207,.46) 23%,rgba(255,248,207,0) 48%),
+    radial-gradient(circle at 16% 12%,rgba(241,90,67,.84) 0%,rgba(241,90,67,0) 53%),
+    radial-gradient(circle at 88% 20%,rgba(67,169,222,.82) 0%,rgba(67,169,222,0) 54%),
+    radial-gradient(circle at 54% 118%,rgba(18,63,133,.78) 0%,rgba(18,63,133,0) 56%),
+    linear-gradient(135deg,#f15a43 0%,#ffd95b 42%,#9fdcf4 72%,#123f85 110%)!important;
+}
+.universe-body .creation::after{
+  box-shadow:inset 0 0 165px rgba(15,56,95,.18)!important;
+  background:radial-gradient(circle at 50% 46%,rgba(255,248,207,0) 0 37%,rgba(16,62,109,.09) 100%);
+}
+.universe-body .wordmark,.universe-body .bottomnav{
+  background:radial-gradient(ellipse at center,rgba(255,247,215,.94) 0%,rgba(255,224,104,.72) 52%,rgba(255,224,104,0) 82%)!important;
+}
+.universe-body .focus{
+  background:linear-gradient(145deg,rgba(255,248,207,.92),rgba(255,198,112,.84))!important;
+  border-color:rgba(16,62,109,.28)!important;
+}
+.universe-body .index-view{background:linear-gradient(145deg,#fff0bc 0%,#c6eaf5 58%,#ef9c79 125%)!important}
+.universe-body .index-head{background:rgba(255,240,188,.94)!important}
+
+/* Stippled diffusion replaces the previous fog-glass button surface. */
+.universe-body .index-trigger,
+.universe-body .focus-actions button,
+.universe-body .empty button,
+.universe-body .editor-note button{
+  position:relative;
+  overflow:hidden;
+  isolation:isolate;
+  background:linear-gradient(135deg,#fff5bd 0%,#ffb75d 58%,#8ac4e8 100%)!important;
+  border-color:rgba(16,62,109,.3)!important;
+  backdrop-filter:none!important;
+}
+.universe-body .index-trigger::before,
+.universe-body .focus-actions button::before,
+.universe-body .empty button::before,
+.universe-body .editor-note button::before{
+  content:"";
+  position:absolute;
+  inset:-18%;
+  z-index:-1;
+  opacity:.38;
+  background-image:
+    radial-gradient(circle,rgba(241,70,39,.86) 0 .62px,transparent 1.05px),
+    radial-gradient(circle,rgba(18,74,139,.62) 0 .56px,transparent .96px),
+    radial-gradient(circle,rgba(244,236,50,.8) 0 .58px,transparent 1px);
+  background-position:0 0,2px 3px,4px 1px;
+  background-size:5px 5px,6px 6px,7px 7px;
+  -webkit-mask-image:radial-gradient(circle at 78% 72%,#000 0%,rgba(0,0,0,.92) 24%,rgba(0,0,0,.3) 60%,transparent 82%);
+  mask-image:radial-gradient(circle at 78% 72%,#000 0%,rgba(0,0,0,.92) 24%,rgba(0,0,0,.3) 60%,transparent 82%);
+}
+.universe-body .index-trigger>*{position:relative;z-index:1}
+.universe-body .index-trigger:hover,
+.universe-body .focus-actions button:hover,
+.universe-body .empty button:hover,
+.universe-body .editor-note button:hover{
+  color:#103e6d!important;
+  background:linear-gradient(135deg,#f4ec32 0%,#ff8954 54%,#65bce7 100%)!important;
+}
+.universe-body .material{box-shadow:0 13px 34px rgba(16,62,109,.18)}
+.universe-body .material:hover{box-shadow:0 22px 48px rgba(16,62,109,.28)}
+
+/* 2026-07 continuity pass — cool stories, warm-blue universe and softer joins. */
+.sound-story-body .story-particle-hero{
+  background:radial-gradient(circle at 50% 46%,#f9fbd3 0%,#eaf4c8 33%,#9fdcf4 72%,#3e8fce 132%)!important;
+}
+.sound-story-body .sound-story-content{background:linear-gradient(180deg,#eaf4c8 0%,#fff8df 31%,#c8eaf6 100%)!important}
+.sound-story-body .city-hero{background:linear-gradient(135deg,rgba(234,244,200,.92),rgba(159,220,244,.48))!important}
+.sound-story-body .story-tap-button{border-color:rgba(18,63,133,.42)!important;background:rgba(234,244,200,.84)!important;color:#123f85!important}
+.sound-story-body .story-tap-button:hover{background:#f4ec32!important;color:#123f85!important;border-color:#123f85!important}
+.sound-story-body .tabs{background:rgba(234,244,200,.9)!important;border-color:rgba(18,63,133,.24)!important}.sound-story-body .tabs button{color:#315b87!important}.sound-story-body .tabs button.active{background:#123f85!important;color:#f4ff00!important}
+.sound-story-body .pill.dark{background:#123f85!important;color:#f4ff00!important;border-color:#123f85!important}.sound-story-body .pill{border-color:rgba(18,63,133,.34)!important;color:#123f85!important}
+.sound-story-body .footer{background:#123f85!important;color:#eaf4c8!important;border-color:#123f85!important}.sound-story-body .footer small{color:#eaf4c8!important}
+.sound-story-body .sound-card:nth-child(3){background:linear-gradient(145deg,#9fdcf4 0%,#eaf4c8 56%,#ffb58d 132%)!important}
+.sound-story-body .sound-card:nth-child(6){background:linear-gradient(145deg,#eaf4c8 0%,#fff8df 48%,#8ccff0 126%)!important}
+
+.universe-body{
+  --paper:#fff0bc;
+  --ink:#103e6d;
+  --muted:#41647d;
+  --faint:#668596;
+  --line:rgba(16,62,109,.25);
+  --like:#f04f36;
+  background:#fff0bc!important;
+}
+.universe-body .creation{
+  background:
+    radial-gradient(circle at 50% 46%,rgba(255,249,213,.97) 0%,rgba(255,240,188,.6) 25%,rgba(255,240,188,0) 49%),
+    radial-gradient(circle at 13% 16%,rgba(241,90,67,.82) 0%,rgba(241,90,67,0) 52%),
+    radial-gradient(circle at 86% 17%,rgba(159,220,244,.9) 0%,rgba(159,220,244,0) 55%),
+    radial-gradient(circle at 50% 118%,rgba(18,63,133,.78) 0%,rgba(18,63,133,0) 58%),
+    linear-gradient(135deg,#f15a43 0%,#ffd95b 36%,#9fdcf4 68%,#123f85 112%)!important;
+}
+.universe-body .creation::after{
+  background:radial-gradient(circle at 50% 46%,rgba(255,249,213,0) 0 34%,rgba(4,35,76,.17) 100%)!important;
+  box-shadow:inset 0 0 185px rgba(4,35,76,.3)!important;
+}
+.universe-body .wordmark,.universe-body .bottomnav{background:radial-gradient(ellipse at center,rgba(255,249,213,.96) 0%,rgba(255,224,104,.7) 54%,rgba(255,224,104,0) 82%)!important}
+.universe-body .focus{background:linear-gradient(145deg,rgba(255,249,213,.94),rgba(255,211,126,.86))!important;border-color:rgba(18,63,133,.28)!important}
+.universe-body .index-view{background:linear-gradient(145deg,#fff0bc 0%,#c8eaf6 55%,#ef9c79 126%)!important}.universe-body .index-head{background:rgba(255,240,188,.94)!important}
+.universe-body .index-trigger,.universe-body .focus-actions button,.universe-body .empty button,.universe-body .editor-note button{background:linear-gradient(135deg,#fff4b2 0%,#ffb75d 56%,#8ccff0 100%)!important}
+.universe-body .index-trigger::before,.universe-body .focus-actions button::before,.universe-body .empty button::before,.universe-body .editor-note button::before{
+  background-image:radial-gradient(circle,rgba(241,70,39,.9) 0 .62px,transparent 1.05px),radial-gradient(circle,rgba(18,63,133,.72) 0 .56px,transparent .96px),radial-gradient(circle,rgba(244,236,50,.82) 0 .58px,transparent 1px)!important;
+}
+.universe-body .index-trigger:hover,.universe-body .focus-actions button:hover,.universe-body .empty button:hover,.universe-body .editor-note button:hover{background:linear-gradient(135deg,#f4ec32 0%,#ff8954 52%,#65bce7 100%)!important}
+.universe-body .material-label{display:none!important}
+
+/* Particle edging for the upper and lower Universe controls. */
+.universe-body .wordmark,.universe-body .bottomnav,.universe-body .index-head{isolation:isolate;overflow:hidden}
+.universe-body .wordmark::before,.universe-body .bottomnav::before,.universe-body .index-head::after{
+  content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;opacity:.28;
+  background-image:radial-gradient(circle,rgba(241,90,67,.9) 0 .58px,transparent 1px),radial-gradient(circle,rgba(18,63,133,.7) 0 .52px,transparent .92px),radial-gradient(circle,rgba(244,236,50,.82) 0 .55px,transparent .96px);
+  background-size:6px 6px,7px 7px,8px 8px;background-position:0 0,2px 3px,4px 1px;
+  -webkit-mask-image:linear-gradient(180deg,#000 0%,transparent 28%,transparent 72%,#000 100%);mask-image:linear-gradient(180deg,#000 0%,transparent 28%,transparent 72%,#000 100%);
+}
+
+/* No bordered label or navigation text may sit against its edge. */
+.site-nav a{padding:8px 10px}
+.tabs button{padding-left:1.7rem!important;padding-right:1.7rem!important}
+.wave-mode-tabs button{padding:9px 14px 10px!important}
+.ai-variation{padding:13px 18px!important}
+.editor-text-button{padding:11px 18px!important}
+.coordinate-actions button,.coordinate-actions a,.focus-actions button,.index-tools button,.index-head button,.empty button,.editor-note button{padding:11px 18px!important}
+.mode-row button{padding:8px 14px}.editor-entry{padding:9px 15px}.about-mobile-body .actions .pill{padding:.8rem 1.55rem}
+
+/* Blur the Editor chapter seam and retain a deep-blue vignette on blue fields. */
+.melody-editor-body .wave-editor-hero::after{
+  content:"";position:absolute;left:0;right:0;bottom:0;height:170px;z-index:5;pointer-events:none;
+  background:linear-gradient(180deg,rgba(255,241,189,0) 0%,rgba(255,241,189,.24) 42%,#fff1bd 100%);
+}
+.melody-editor-body .melody-library{border-top:0!important}
+.melody-editor-body .wave-editor-fog{box-shadow:inset 0 0 185px rgba(4,35,76,.32)!important}
+.explore-body .globe-explore::after{box-shadow:inset 0 0 175px rgba(4,35,76,.28)!important}
+.about-mobile-body .mobile-bridge{box-shadow:inset 0 0 155px rgba(4,35,76,.18)}
+@media(min-width:701px){.melody-editor-body .wave-control-panel{width:330px}}
+
+/* Softer edge diffusion for the Creation Universe identity and lower navigation. */
+.universe-body .wordmark{
+  background:radial-gradient(ellipse at center,rgba(255,249,213,.97) 0 38%,rgba(255,224,104,.72) 58%,rgba(255,224,104,.28) 76%,rgba(255,224,104,0) 100%)!important;
+}
+.universe-body .bottomnav{
+  background:radial-gradient(ellipse at center,rgba(255,249,213,.97) 0 36%,rgba(255,224,104,.72) 57%,rgba(255,224,104,.26) 77%,rgba(255,224,104,0) 100%)!important;
+}
+
+/* Global Melotrip cursor — mirrors the Explore ring and diamond language. */
+@media(pointer:fine){
+  body,body *{cursor:none!important}
+  .global-melotrip-cursor{position:fixed;left:0;top:0;z-index:10000;width:32px;height:32px;margin:-16px 0 0 -16px;border:1px solid rgba(18,63,133,.72);border-radius:50%;pointer-events:none;opacity:0;transform:translate3d(var(--cursor-x,-100px),var(--cursor-y,-100px),0);transition:width .24s,height .24s,margin .24s,background .24s,border-color .24s,opacity .18s;mix-blend-mode:multiply}
+  .global-melotrip-cursor.visible{opacity:1}
+  .global-melotrip-cursor i{position:absolute;left:50%;top:50%;width:4px;height:4px;transform:translate(-50%,-50%) rotate(45deg);background:#123f85;transition:.24s}
+  .global-melotrip-cursor.over-spatial{width:58px;height:58px;margin:-29px 0 0 -29px;background:rgba(244,236,50,.18);border-color:#f15a43}
+  .global-melotrip-cursor.over-spatial i{width:8px;height:8px;background:#f15a43}
+  .global-melotrip-cursor.over-action{width:22px;height:22px;margin:-11px 0 0 -11px;background:rgba(18,63,133,.92);border-color:#123f85}
+  .global-melotrip-cursor.over-action i{width:3px;height:3px;background:#fff1bd}
+  .global-melotrip-cursor.pressed{transform:translate3d(var(--cursor-x,-100px),var(--cursor-y,-100px),0) scale(.84)}
+}
+
+/* Particle-only diffusion: no visible rectangular edge around Universe controls. */
+.universe-body .wordmark,.universe-body .bottomnav{background:transparent!important;overflow:visible!important}
+.universe-body .wordmark::before,.universe-body .bottomnav::before{
+  inset:-18% -15%!important;
+  z-index:-1!important;
+  opacity:.58!important;
+  background-image:radial-gradient(circle,rgba(241,90,67,.82) 0 .58px,transparent 1px),radial-gradient(circle,rgba(18,63,133,.62) 0 .52px,transparent .92px),radial-gradient(circle,rgba(244,236,50,.88) 0 .58px,transparent .98px)!important;
+  background-size:6px 6px,7px 7px,8px 8px!important;
+  -webkit-mask-image:radial-gradient(ellipse at center,#000 0 34%,rgba(0,0,0,.86) 51%,rgba(0,0,0,.34) 72%,transparent 100%)!important;
+  mask-image:radial-gradient(ellipse at center,#000 0 34%,rgba(0,0,0,.86) 51%,rgba(0,0,0,.34) 72%,transparent 100%)!important;
+}
+.universe-body .wordmark::after,.universe-body .bottomnav::after{
+  content:"";position:absolute;inset:-28% -18%;z-index:-2;pointer-events:none;
+  background:radial-gradient(ellipse at center,rgba(255,249,213,.98) 0 30%,rgba(255,224,104,.68) 50%,rgba(255,224,104,.22) 70%,rgba(255,224,104,0) 100%);
+  filter:blur(7px);
+}
+
+/* Opening sequence cursor — luminous lemon ring on the dark animation field. */
+@media(pointer:fine){
+  .intro-body .global-melotrip-cursor{
+    z-index:2147483647;
+    width:38px;height:38px;margin:-19px 0 0 -19px;
+    border:1.5px solid #f4ec32;
+    background:rgba(244,236,50,.035);
+    box-shadow:0 0 0 1px rgba(244,236,50,.12),0 0 18px rgba(244,236,50,.34);
+    mix-blend-mode:screen;
+  }
+  .intro-body .global-melotrip-cursor i{width:4px;height:4px;border-radius:50%;transform:translate(-50%,-50%);background:#f4ec32;box-shadow:0 0 8px rgba(244,236,50,.8)}
+  .intro-body .global-melotrip-cursor.over-action{width:26px;height:26px;margin:-13px 0 0 -13px;border-color:#f4ec32;background:rgba(244,236,50,.16)}
+  .intro-body .global-melotrip-cursor.over-action i{background:#f4ec32}
+}
+
+/* Creation Universe uses the same strict two-font product system. */
+.universe-body,.universe-body button,.universe-body input,.universe-body a,.universe-body .wordmark span,.universe-body .counter,.universe-body .exit,.universe-body .sound,.universe-body .eyebrow,.universe-body .focus p,.universe-body .focus-meta,.universe-body .index-head span,.universe-body .index-head button,.universe-body .index-tools button,.universe-body .index-tools input,.universe-body .grid-card small{font-family:'Helvetica Neue',Helvetica,Arial,sans-serif!important;font-weight:300!important}
+.universe-body .wordmark strong,.universe-body .focus h2,.universe-body .index-head h2,.universe-body .grid-card b,.universe-body .empty h3,.universe-body .editor-note h2,.universe-body .mode-row button,.universe-body .editor-entry,.universe-body .index-trigger span,.universe-body .material-label b{font-family:'Cormorant Garamond',Georgia,serif!important;font-weight:300!important}
+.universe-body .index-tools input{padding:10px 12px!important;font-size:13px!important;line-height:1.2;letter-spacing:.12em!important;text-transform:uppercase}
+.universe-body .index-tools input::placeholder{color:var(--muted);opacity:1;letter-spacing:.12em}
+.universe-body .index-tools button{font-size:13px!important;letter-spacing:.12em!important}
+
+/* Index cards: one utility face, one spacing system, every row aligned. */
+.universe-body .grid{row-gap:30px!important}
+.universe-body .grid-card b,
+.universe-body .grid-card small{
+  font-family:'Helvetica Neue',Helvetica,Arial,sans-serif!important;
+  font-weight:300!important;
+  line-height:1.2!important;
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
+}
+.universe-body .grid-card b{
+  min-height:16px;
+  margin-top:10px!important;
+  font-size:12px!important;
+  letter-spacing:.045em!important;
+}
+.universe-body .grid-card small{
+  min-height:13px;
+  margin-top:4px!important;
+  font-size:10px!important;
+  letter-spacing:.09em!important;
+}
+
+/* 2026-08 Creation Universe continuity pass.
+   The space now shares Explore's sky-blue / lemon / soft-green atmosphere;
+   typography sits on a quiet light bloom instead of a separate dotted panel. */
+.universe-body{
+  --paper:#e9f2c8;
+  --ink:#123f85;
+  --muted:#315b80;
+  --faint:#527697;
+  --line:rgba(18,63,133,.25);
+  --like:#ef88a4;
+  background:#b8dff0!important;
+  color:#123f85!important;
+  font-size:16px;
+}
+.universe-body .creation{
+  background:
+    radial-gradient(circle at 55% 48%,rgba(244,236,50,.9) 0%,rgba(244,236,50,.42) 25%,rgba(244,236,50,0) 49%),
+    radial-gradient(circle at 14% 45%,rgba(140,207,240,.97) 0%,rgba(140,207,240,.52) 38%,rgba(140,207,240,0) 66%),
+    radial-gradient(circle at 88% 22%,rgba(232,244,195,.96) 0%,rgba(232,244,195,.42) 42%,rgba(232,244,195,0) 70%),
+    linear-gradient(135deg,#9fdcf4 0%,#d9edc1 48%,#f2ed58 100%)!important;
+}
+.universe-body .creation::after{
+  background:radial-gradient(circle at 53% 47%,rgba(255,255,228,0) 0 43%,rgba(45,112,166,.12) 100%)!important;
+  box-shadow:inset 0 0 150px rgba(42,111,165,.14)!important;
+}
+
+/* Remove the dense coloured stipple under the upper identity and lower modes. */
+.universe-body .wordmark,
+.universe-body .bottomnav{
+  background:transparent!important;
+  overflow:visible!important;
+  text-shadow:0 1px 12px rgba(235,244,205,.9)!important;
+}
+.universe-body .wordmark::before,
+.universe-body .bottomnav::before{
+  display:none!important;
+}
+.universe-body .wordmark::after,
+.universe-body .bottomnav::after{
+  content:"";
+  position:absolute;
+  inset:-28% -18%;
+  z-index:-2;
+  pointer-events:none;
+  background:radial-gradient(ellipse at center,rgba(250,252,220,.9) 0 31%,rgba(220,240,204,.46) 58%,rgba(220,240,204,0) 82%)!important;
+  filter:blur(12px)!important;
+}
+
+.universe-body .focus{
+  background:linear-gradient(145deg,rgba(246,249,215,.94),rgba(192,226,225,.9))!important;
+  border-color:rgba(18,63,133,.22)!important;
+  box-shadow:0 24px 70px rgba(54,107,143,.14)!important;
+}
+.universe-body .index-view{
+  background:linear-gradient(145deg,#e4f1c9 0%,#b8e1f1 58%,#f4ee72 132%)!important;
+}
+.universe-body .index-head{
+  background:rgba(229,242,210,.93)!important;
+}
+.universe-body .index-head::after{display:none!important}
+
+.universe-body .index-trigger,
+.universe-body .focus-actions button,
+.universe-body .empty button,
+.universe-body .editor-note button{
+  color:#123f85!important;
+  background:linear-gradient(135deg,rgba(250,252,220,.9),rgba(176,220,236,.82))!important;
+  border-color:rgba(18,63,133,.24)!important;
+  box-shadow:0 12px 32px rgba(47,106,145,.1)!important;
+}
+.universe-body .index-trigger::before,
+.universe-body .focus-actions button::before,
+.universe-body .empty button::before,
+.universe-body .editor-note button::before{
+  display:none!important;
+}
+.universe-body .index-trigger:hover,
+.universe-body .focus-actions button:hover,
+.universe-body .empty button:hover,
+.universe-body .editor-note button:hover{
+  color:#123f85!important;
+  background:linear-gradient(135deg,rgba(244,236,50,.82),rgba(159,220,244,.88))!important;
+}
+.universe-body .mode-row button.active::after{background:#123f85!important}
+
+/* Product-size utility copy: darker, one step larger and no hairline weight. */
+.universe-body,
+.universe-body button,
+.universe-body input,
+.universe-body a,
+.universe-body .wordmark span,
+.universe-body .counter,
+.universe-body .exit,
+.universe-body .sound,
+.universe-body .eyebrow,
+.universe-body .focus p,
+.universe-body .focus-meta,
+.universe-body .index-head span,
+.universe-body .index-head button,
+.universe-body .index-tools button,
+.universe-body .index-tools input,
+.universe-body .grid-card small{
+  color:#315b80;
+  font-weight:400!important;
+}
+.universe-body .wordmark span,
+.universe-body .counter,
+.universe-body .exit,
+.universe-body .sound,
+.universe-body .focus .eyebrow,
+.universe-body .focus-meta,
+.universe-body .index-head span,
+.universe-body .index-head button{
+  font-size:13px!important;
+}
+.universe-body .focus p{font-size:16px!important;line-height:1.6!important}
+.universe-body .focus-actions button{font-size:13px!important}
+.universe-body .grid-card b{
+  min-height:20px;
+  font-size:16px!important;
+  font-weight:400!important;
+  line-height:1.25!important;
+}
+.universe-body .grid-card small{
+  min-height:16px;
+  font-size:13px!important;
+  line-height:1.3!important;
+  letter-spacing:.07em!important;
+}
+.universe-body .mode-row button{
+  color:#527697!important;
+  font-size:18px!important;
+  font-weight:400!important;
+}
+.universe-body .mode-row button:hover,
+.universe-body .mode-row button.active,
+.universe-body .editor-entry.ready{color:#123f85!important}
+.universe-body .editor-entry{font-size:14px!important;font-weight:400!important}
+
+@media(max-width:720px){
+  .universe-body .mode-row button{font-size:16px!important}
+  .universe-body .wordmark span{font-size:11px!important}
+}

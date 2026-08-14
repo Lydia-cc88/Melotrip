@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Melody Editor — Melotrip</title>
+  <link rel="stylesheet" href="shared.css">
+  <link rel="stylesheet" href="palette.css">
+</head>
+<body class="melody-editor-body">
+  <header class="site-header melody-editor-header">
+    <a class="brand" href="index.html">MELOTRIP</a>
+    <nav class="site-nav" aria-label="Primary navigation">
+      <a href="explore.html">Explore</a><a href="city.html">Sound Stories</a><a href="studio.html">Creation Universe</a><a class="active" href="gallery.html">Melody Editor</a><a href="about.html">About &amp; Mobile</a>
+    </nav>
+  </header>
+
+  <main class="wave-editor-page">
+    <section class="wave-editor-hero" id="waveEditor" aria-label="Interactive melody editor">
+      <canvas id="editorWaveCanvas" class="editor-wave-canvas" aria-label="Interactive editable melody wave field"></canvas>
+      <div class="wave-editor-fog" aria-hidden="true"></div>
+      <div class="editor-heading editor-heading-compact" aria-live="polite">
+        <span>MELODY EDITOR · NOW EDITING</span><strong id="sessionTitle">A Day in Florence</strong><small id="editorStatus">7 materials · 03:24</small>
+      </div>
+      <aside class="wave-control-panel" aria-label="Wave shaping controls">
+        <div class="wave-mode-tabs" role="toolbar" aria-label="Editing layer"><button class="active" type="button" data-wave-mode="melody" aria-pressed="true">Melody</button><button type="button" data-wave-mode="atmosphere" aria-pressed="false">Atmosphere</button><button type="button" data-wave-mode="rhythm" aria-pressed="false">Rhythm</button></div>
+        <label><span>Intensity <b id="intensityValue">64</b></span><input id="intensityControl" type="range" min="15" max="100" value="64"></label>
+        <label><span>Texture <b id="textureValue">48</b></span><input id="textureControl" type="range" min="10" max="100" value="48"></label>
+        <label><span>Tempo <b id="tempoValue">92</b></span><input id="tempoControl" type="range" min="60" max="150" value="92"></label>
+        <button class="ai-variation" id="aiVariation" type="button">Generate AI variation</button>
+      </aside>
+      <div class="wave-instruction">Move and drag to reshape the sound field</div><a class="editor-scroll-cue" href="#melodyLibrary">Open Personal Melody Archive ↓</a>
+    </section>
+
+    <section class="melody-library" id="melodyLibrary" aria-labelledby="libraryTitle">
+      <header class="library-heading">
+        <div><span class="kicker">PERSONAL ARCHIVE · 04 MELODIES</span><h2 id="libraryTitle"><span>Personal Melody</span> <span>Archive</span></h2></div>
+        <p>A practical library for finished and in-progress travel music. Play a track, reopen it in the editor, upload it to your account, or download the project.</p>
+      </header>
+      <section class="clip-edit-module" aria-labelledby="clipEditTitle">
+        <header class="clip-module-heading">
+          <div><span class="kicker">CURRENT ARRANGEMENT</span><h3 id="clipEditTitle">A Day in Florence</h3></div>
+          <p>Drag the yellow handles to set the beginning and end of the melody before saving it to your archive.</p>
+        </header>
+        <div class="editor-transport-panel" aria-label="Playback and edit controls">
+          <button class="editor-round-play" id="editorPlay" type="button" aria-label="Play melody" aria-pressed="false"><span>▶</span></button>
+          <div class="clip-trimmer" id="clipTrimmer" role="group" aria-label="Drag the left and right handles to trim the melody">
+            <div class="clip-wave" id="clipWave">
+              <div class="clip-mask clip-mask-left" id="clipMaskLeft" aria-hidden="true"></div>
+              <div class="clip-mask clip-mask-right" id="clipMaskRight" aria-hidden="true"></div>
+              <div class="clip-window" id="clipWindow">
+                <button class="trim-handle trim-handle-start" id="trimStart" type="button" aria-label="Adjust clip start" aria-valuemin="0" aria-valuemax="204" aria-valuenow="0"><span></span></button>
+                <div class="clip-progress" id="editorProgress" aria-hidden="true"></div>
+                <button class="trim-handle trim-handle-end" id="trimEnd" type="button" aria-label="Adjust clip end" aria-valuemin="0" aria-valuemax="204" aria-valuenow="204"><span></span></button>
+              </div>
+            </div>
+            <div class="clip-time"><span id="editorCurrentTime">00:00</span><span id="trimSelectionLabel">Selection · 03:24</span><span>03:24</span></div>
+          </div>
+          <button class="editor-text-button" id="addMaterial" type="button">＋ Add material</button><button class="editor-text-button editor-save" id="saveMelody" type="button">Save melody</button>
+        </div>
+      </section>
+      <div class="melody-list" id="melodyList" role="list" aria-label="Journey melodies">
+        <article class="melody-track active" role="listitem" data-title="A Day in Florence" data-city="Florence" data-duration="03:24" style="--c1:#6a4c62;--c2:#c5a059"><span class="track-index">01</span><span class="track-cover"><i></i></span><div class="track-main"><strong>A Day in Florence</strong><small>Edited today · 7 materials</small></div><span class="track-place">Florence · Italy</span><span class="track-duration">03:24</span><div class="track-actions"><button class="track-action" data-action="play" type="button" title="Play" aria-label="Play A Day in Florence">▶</button><button class="track-action" data-action="edit" type="button" title="Edit" aria-label="Edit A Day in Florence">✎</button><button class="track-action" data-action="upload" type="button" title="Upload" aria-label="Upload A Day in Florence">↑</button><button class="track-action" data-action="download" type="button" title="Download" aria-label="Download A Day in Florence">↓</button></div></article>
+        <article class="melody-track" role="listitem" data-title="Atlantic Window" data-city="Lisbon" data-duration="04:02" style="--c1:#3c5a68;--c2:#8da7a2"><span class="track-index">02</span><span class="track-cover"><i></i></span><div class="track-main"><strong>Atlantic Window</strong><small>Completed · 9 materials</small></div><span class="track-place">Lisbon · Portugal</span><span class="track-duration">04:02</span><div class="track-actions"><button class="track-action" data-action="play" type="button" title="Play" aria-label="Play Atlantic Window">▶</button><button class="track-action" data-action="edit" type="button" title="Edit" aria-label="Edit Atlantic Window">✎</button><button class="track-action" data-action="upload" type="button" title="Upload" aria-label="Upload Atlantic Window">↑</button><button class="track-action" data-action="download" type="button" title="Download" aria-label="Download Atlantic Window">↓</button></div></article>
+        <article class="melody-track" role="listitem" data-title="Green Carriage" data-city="Kyoto" data-duration="02:48" style="--c1:#7d8456;--c2:#d2b879"><span class="track-index">03</span><span class="track-cover"><i></i></span><div class="track-main"><strong>Green Carriage</strong><small>Draft · 5 materials</small></div><span class="track-place">Kyoto · Japan</span><span class="track-duration">02:48</span><div class="track-actions"><button class="track-action" data-action="play" type="button" title="Play" aria-label="Play Green Carriage">▶</button><button class="track-action" data-action="edit" type="button" title="Edit" aria-label="Edit Green Carriage">✎</button><button class="track-action" data-action="upload" type="button" title="Upload" aria-label="Upload Green Carriage">↑</button><button class="track-action" data-action="download" type="button" title="Download" aria-label="Download Green Carriage">↓</button></div></article>
+        <article class="melody-track" role="listitem" data-title="Afterlight Signal" data-city="Seoul" data-duration="03:58" style="--c1:#b35c4a;--c2:#dfb37d"><span class="track-index">04</span><span class="track-cover"><i></i></span><div class="track-main"><strong>Afterlight Signal</strong><small>Completed · 11 materials</small></div><span class="track-place">Seoul · Korea</span><span class="track-duration">03:58</span><div class="track-actions"><button class="track-action" data-action="play" type="button" title="Play" aria-label="Play Afterlight Signal">▶</button><button class="track-action" data-action="edit" type="button" title="Edit" aria-label="Edit Afterlight Signal">✎</button><button class="track-action" data-action="upload" type="button" title="Upload" aria-label="Upload Afterlight Signal">↑</button><button class="track-action" data-action="download" type="button" title="Download" aria-label="Download Afterlight Signal">↓</button></div></article>
+      </div>
+      <div class="library-status" aria-live="polite"><span>Selected · <strong id="librarySelection">A Day in Florence</strong></span><span id="libraryActionStatus">Ready to play, edit, upload or download</span></div>
+    </section>
+  </main>
+  <script src="global-cursor.js"></script>
+  <script src="melody-editor.js"></script>
+</body>
+</html>

@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Explore — Melotrip</title>
+  <link rel="stylesheet" href="shared.css">
+  <link rel="stylesheet" href="palette.css">
+</head>
+<body class="explore-body">
+  <header class="site-header globe-header">
+    <a class="brand" href="index.html">MELOTRIP</a>
+    <nav class="site-nav">
+      <a class="active" href="explore.html">Explore</a>
+      <a href="city.html">Sound Stories</a>
+      <a href="studio.html">Creation Universe</a>
+      <a href="gallery.html">Melody Editor</a>
+      <a href="about.html">About & Mobile</a>
+    </nav>
+  </header>
+
+  <main class="globe-explore" id="globeExplore">
+    <canvas class="globe-canvas" id="globeCanvas" aria-label="Interactive globe with 56 sound coordinates"></canvas>
+    <a class="coordinate-preview-link" id="coordinatePreviewLink" href="city.html" aria-hidden="true" tabindex="-1">Open sound story</a>
+    <h1 class="journey-title"><span>Explore the World’s</span> <span>Soundscapes.</span></h1>
+
+    <form class="explore-question" id="exploreQuestion" role="search">
+      <label for="placeSearch">What does a place sound like?</label>
+      <div><input id="placeSearch" name="place" type="search" placeholder="Search Tokyo, Lisbon, Nairobi…" autocomplete="off"><button type="submit" aria-label="Search sound coordinates">↗</button></div>
+      <small id="searchHint">Explore 56 sound coordinates</small>
+    </form>
+
+    <aside class="coordinate-card" id="coordinateCard" aria-hidden="true" aria-live="polite">
+      <button class="coordinate-close" id="coordinateClose" aria-label="Close sound card">&times;</button>
+      <span id="coordinatePlace">Tokyo &middot; Japan</span>
+      <h2 id="coordinateTitle">Morning Departure</h2>
+      <p id="coordinateCopy">A station melody shaped by platform air, footsteps and the first trains of the day.</p>
+      <div class="coordinate-wave" id="coordinateWave" aria-hidden="true"></div>
+      <div class="coordinate-actions">
+        <button id="coordinateReplay">&#9654; Replay coordinate</button>
+        <a href="city.html">Open sound story</a>
+      </div>
+    </aside>
+  </main>
+  <div class="melotrip-cursor" id="melotripCursor" aria-hidden="true"><i></i></div>
+  <script src="explore.js"></script>
+</body>
+</html>

@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Melotrip — Opening</title>
+  <style>
+    @font-face{font-family:'Cormorant Garamond';src:url('assets/fonts/CormorantGaramond-Light.ttf') format('truetype');font-style:normal;font-weight:300;font-display:swap}
+    *{box-sizing:border-box;margin:0;padding:0}html,body{width:100%;height:100%;overflow:hidden}body{font-family:'Cormorant Garamond',Georgia,serif;font-weight:300;background:#f4f0ea;color:#151512;-webkit-font-smoothing:antialiased}
+    .intro{position:fixed;inset:0;overflow:hidden;background:#f4f0ea;isolation:isolate;transition:opacity .9s cubic-bezier(.4,0,.2,1),filter .9s}.intro:after{content:"";position:absolute;inset:0;z-index:3;pointer-events:none;box-shadow:inset 0 0 150px rgba(62,58,47,.08)}body.leaving .intro{opacity:0;filter:blur(7px)}
+    #placeCanvas{position:absolute;inset:0;z-index:1;width:100%;height:100%;cursor:crosshair;touch-action:none}
+    .intro-title{position:absolute;z-index:6;left:50%;top:50%;transform:translate(-50%,-50%);padding-left:.18em;font-family:'Cormorant Garamond',Georgia,serif;font-size:clamp(20px,1.55vw,27px);font-weight:600;line-height:1;letter-spacing:.18em;text-transform:uppercase;white-space:nowrap;text-shadow:0 1px 14px rgba(243,241,233,.96);pointer-events:none;opacity:0;animation:title-in 1.4s .25s forwards}
+    @keyframes title-in{from{opacity:0;letter-spacing:.9em}to{opacity:1;letter-spacing:.55em}}
+    .intro-progress{position:absolute;z-index:7;left:50%;top:22px;width:17px;height:17px;transform:translateX(-50%) rotate(-90deg);border-radius:50%}.intro-progress circle{fill:none;stroke:#181815;stroke-width:1.35;stroke-linecap:round;stroke-dasharray:56.55;stroke-dashoffset:56.55}
+    .skip-intro{position:absolute;z-index:8;left:50%;bottom:22px;transform:translateX(-50%);padding:7px 0 3px;border:0;border-bottom:1px solid #77756d;background:none;font-size:15px;font-weight:300;letter-spacing:.32em;text-transform:uppercase;color:#68665f;transition:.3s}.skip-intro:hover{color:#151512;letter-spacing:.38em;border-color:#151512}
+    .sound-intro{position:absolute;z-index:8;right:27px;bottom:24px;border:0;background:none;color:#77756d;font-size:12px;font-weight:300;letter-spacing:.16em;text-transform:uppercase;transition:.3s}.sound-intro:hover,.sound-intro.enabled{color:#151512}
+    @media(max-width:600px){.intro-title{font-size:19px}.skip-intro{bottom:19px;font-size:13px}.sound-intro{right:18px;bottom:20px;font-size:10px}.intro-progress{top:18px}}
+    @media(prefers-reduced-motion:reduce){.intro-title{animation:none;opacity:1}.intro:after{box-shadow:none}}
+    .intro:after{display:none}.intro-title{font-family:'Cormorant Garamond',Georgia,serif;font-weight:600;letter-spacing:.18em;animation-name:title-in-unified}@keyframes title-in-unified{from{opacity:0;letter-spacing:.32em}to{opacity:1;letter-spacing:.18em}}
+  </style>
+  <link rel="stylesheet" href="palette.css">
+</head>
+<body class="intro-body">
+  <main class="intro" id="intro" aria-label="Melotrip opening sequence">
+    <canvas id="placeCanvas" aria-hidden="true"></canvas>
+    <h1 class="intro-title">Melotrip</h1>
+    <svg class="intro-progress" viewBox="0 0 20 20" aria-hidden="true"><circle id="progressCircle" cx="10" cy="10" r="9"></circle></svg>
+    <button class="skip-intro" id="skipIntro">Skip intro</button>
+    <button class="sound-intro enabled" id="soundIntro" aria-pressed="true">Sound on &#9679;</button>
+  </main>
+  <script src="global-cursor.js"></script>
+  <script src="intro.js"></script>
+</body>
+</html>

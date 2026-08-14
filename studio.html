@@ -1,0 +1,229 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Creation Universe — Melotrip</title>
+  <style>
+    @font-face{font-family:'Cormorant Garamond';src:url('assets/fonts/CormorantGaramond-Light.ttf') format('truetype');font-style:normal;font-weight:300;font-display:swap}
+    @font-face{font-family:'Cormorant Garamond';src:url('assets/fonts/CormorantGaramond-LightItalic.ttf') format('truetype');font-style:italic;font-weight:300;font-display:swap}
+    :root{--paper:#f7f6f1;--ink:#171714;--muted:#77756d;--faint:#aaa89f;--line:#d9d7cf;--like:#b94f64}
+    *{box-sizing:border-box;margin:0;padding:0}html,body{width:100%;height:100%;overflow:hidden}body{font-family:'Cormorant Garamond',Georgia,serif;font-weight:300;background:var(--paper);color:var(--ink);-webkit-font-smoothing:antialiased}button,input,a{font:inherit;color:inherit}button,a{cursor:pointer}a{text-decoration:none}
+    .creation{position:fixed;inset:0;overflow:hidden;background:radial-gradient(circle at 50% 47%,#fff 0,#fbfaf6 43%,#f0efe9 100%);isolation:isolate;user-select:none}.creation:after{content:"";position:absolute;inset:0;z-index:8;pointer-events:none;box-shadow:inset 0 0 145px rgba(79,76,66,.13)}
+    .topbar{position:absolute;z-index:200;top:0;left:0;right:0;height:120px;pointer-events:none;transform:translateZ(0);transition:opacity .3s}.creation:has(.index-view.open) .topbar{opacity:0;pointer-events:none}.wordmark{position:absolute;left:50%;top:24px;transform:translate3d(-50%,0,0);padding:11px 30px 14px;text-align:center;pointer-events:auto;white-space:nowrap;background:radial-gradient(ellipse at center,rgba(247,246,241,.96) 0,rgba(247,246,241,.76) 55%,rgba(247,246,241,0) 78%);text-shadow:0 1px 8px var(--paper)}.wordmark strong{display:block;font-size:28px;font-weight:300;line-height:1;letter-spacing:.34em;text-transform:uppercase}.wordmark span{display:block;margin-top:7px;font-size:12px;line-height:1;letter-spacing:.42em;color:var(--muted);text-transform:uppercase}.exit{position:absolute;right:36px;top:34px;pointer-events:auto;border:0;background:none;font-size:14px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);transition:.3s}.exit:hover{color:var(--ink)}.counter{position:absolute;left:36px;top:33px;color:var(--muted);font-size:13px;letter-spacing:.14em;text-transform:uppercase}.counter b{font-weight:300;color:var(--ink)}
+    .viewport{position:absolute;inset:0;z-index:1;perspective:1120px;perspective-origin:50% 50%;cursor:crosshair;touch-action:none}.scene{position:absolute;left:50%;top:50%;width:0;height:0;transform-style:preserve-3d;will-change:transform}.material{position:absolute;left:0;top:0;width:var(--w);height:var(--h);margin-left:calc(var(--w) / -2);margin-top:calc(var(--h) / -2);border:0;background-image:url('assets/travel-sprite.png');background-size:400% 300%;background-position:var(--bx) var(--by);background-repeat:no-repeat;box-shadow:0 13px 32px rgba(44,41,32,.16);filter:saturate(.86) contrast(.97);transform:rotateY(var(--longitude)) rotateX(var(--latitude)) translateZ(var(--radius)) rotateZ(var(--tilt)) scale(var(--focus-scale,1)) scale(var(--hover-scale,1));transform-style:preserve-3d;backface-visibility:hidden;will-change:transform,opacity;transition:transform .62s cubic-bezier(.22,.75,.2,1),filter .5s,box-shadow .5s,opacity .35s;cursor:pointer}.material:after{content:"";position:absolute;inset:0;border:1px solid rgba(255,255,255,.46);pointer-events:none}.material:hover{--hover-scale:1.055;filter:saturate(1.04) contrast(1)!important;box-shadow:0 22px 46px rgba(44,41,32,.24)}.creation.is-focused .material:not(.keyboard-focus){filter:blur(4px) saturate(.3) contrast(.92)}.material.keyboard-focus{--focus-scale:1.58;--hover-scale:1;filter:saturate(1.06) contrast(1.02)!important;box-shadow:0 30px 70px rgba(44,41,32,.27)}.material-label{position:absolute;left:0;bottom:-42px;min-width:280px;text-align:left;opacity:0;transition:opacity .35s;pointer-events:none}.material:hover .material-label,.material.keyboard-focus .material-label{opacity:1}.material-label b,.material-label small{display:block;font-weight:300;text-transform:uppercase}.material-label b{font-size:15px;letter-spacing:.13em}.material-label small{margin-top:3px;font-size:11px;letter-spacing:.14em;color:var(--muted)}.heart{position:absolute;right:9px;top:8px;width:30px;height:30px;border:1px solid rgba(255,255,255,.68);border-radius:50%;display:grid;place-items:center;background:rgba(247,246,241,.76);color:var(--ink);font-size:16px;opacity:0;transition:.3s}.material:hover .heart,.material.liked .heart{opacity:1}.material.liked .heart{color:var(--like)}
+    .index-trigger{position:absolute;z-index:202;left:50%;top:50%;width:190px;height:86px;transform:translate(-50%,-50%);border:0;background:rgba(247,246,241,.82);backdrop-filter:blur(5px);text-transform:uppercase;transition:opacity .35s,letter-spacing .35s}.index-trigger i{display:block;font-style:normal;font-size:29px;line-height:23px;transition:transform .4s}.index-trigger span{display:block;margin-top:8px;font-size:18px;letter-spacing:.26em}.index-trigger:hover i{transform:rotate(45deg)}.index-trigger:hover span{letter-spacing:.34em}.index-trigger.hidden{opacity:0;pointer-events:none}
+    .bottomnav{position:absolute;z-index:200;left:50%;bottom:17px;transform:translate3d(-50%,0,0);width:min(850px,80vw);padding:14px 28px 10px;text-align:center;background:radial-gradient(ellipse at center,rgba(247,246,241,.98) 0,rgba(247,246,241,.84) 55%,rgba(247,246,241,0) 80%);text-shadow:0 1px 9px var(--paper)}.mode-row{display:flex;justify-content:center;gap:52px}.mode-row button{position:relative;border:0;background:none;font-size:20px;font-weight:300;letter-spacing:.18em;text-transform:uppercase;color:var(--faint);white-space:nowrap;transition:.3s}.mode-row button:hover,.mode-row button.active{color:var(--ink)}.mode-row button.active:after{content:"";position:absolute;left:0;right:.18em;bottom:-7px;height:1px;background:var(--ink)}.editor-entry{display:inline-block;margin-top:19px;border:0;background:none;font-size:15px;letter-spacing:.26em;text-transform:uppercase;color:var(--faint);transition:.3s}.editor-entry.ready{color:var(--ink)}.editor-entry.ready:hover{letter-spacing:.32em}.editor-entry:disabled{cursor:default}
+    .sound{position:absolute;z-index:201;right:36px;bottom:32px;border:0;background:none;color:var(--muted);font-size:14px;letter-spacing:.13em;text-transform:uppercase}
+    .focus{position:absolute;z-index:210;right:2.6vw;top:50%;width:min(430px,33vw);transform:translateY(-50%);padding:42px 44px 40px;background:rgba(247,246,241,.9);backdrop-filter:blur(13px);box-shadow:0 22px 70px rgba(72,67,54,.07);border:1px solid rgba(217,215,207,.58);opacity:0;pointer-events:none;transition:opacity .45s,transform .55s cubic-bezier(.22,.75,.2,1)}.focus.open{opacity:1;pointer-events:auto}.focus-close{position:absolute;right:20px;top:16px;border:0;background:none;font-size:26px;font-weight:300}.focus .eyebrow{display:block;padding-right:28px;font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted)}.focus h2{margin:20px 0 16px;font-size:44px;font-weight:300;line-height:.98}.focus p{max-width:320px;font-size:18px;line-height:1.55;color:var(--muted)}.focus-meta{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:26px 0 24px;padding:16px 0;border-block:1px solid var(--line);font-size:12px;letter-spacing:.13em;text-transform:uppercase}.focus-actions{display:flex;gap:10px;flex-wrap:wrap}.focus-actions button{padding:11px 15px;border:1px solid var(--line);background:rgba(255,255,255,.32);font-size:13px;letter-spacing:.12em;text-transform:uppercase;transition:.3s}.focus-actions button:hover{border-color:var(--ink);background:rgba(255,255,255,.72)}.focus-actions .liked{color:var(--like)}
+    .index-view{position:absolute;inset:0;z-index:300;padding:28px 42px 110px;background:radial-gradient(circle at 50% 18%,#fff 0,#f8f7f2 46%,#efeee8 100%);opacity:0;visibility:hidden;transform:translateY(20px);transition:.55s;overflow:auto;user-select:text}.index-view.open{opacity:1;visibility:visible;transform:none}.index-head{position:sticky;top:-28px;z-index:2;display:grid;grid-template-columns:1fr auto 1fr;align-items:center;padding:28px 0 24px;background:rgba(247,246,241,.93);backdrop-filter:blur(10px)}.index-head h2{justify-self:center;font-size:26px;font-weight:300;letter-spacing:.25em;text-transform:uppercase}.index-head span{font-size:13px;letter-spacing:.15em;color:var(--muted);text-transform:uppercase}.index-head button{justify-self:end;border:0;background:none;font-size:14px;letter-spacing:.14em;text-transform:uppercase}.index-tools{display:flex;gap:10px;margin:18px 0 34px}.index-tools input{width:320px;padding:10px 0;border:0;border-bottom:1px solid var(--line);background:none;outline:none;font-size:17px}.index-tools button{border:0;border-bottom:1px solid var(--line);background:none;padding:10px 12px;font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}.grid{display:grid;grid-template-columns:repeat(5,1fr);gap:28px 16px}.grid-card{position:relative;border:0;background:none;text-align:left}.grid-image{display:block;width:100%;aspect-ratio:4/3;background-image:url('assets/travel-sprite.png');background-size:400% 300%;background-position:var(--bx) var(--by);box-shadow:0 8px 20px rgba(44,41,32,.1)}.grid-card b{display:block;margin-top:10px;font-size:17px;font-weight:300}.grid-card small{display:block;margin-top:2px;color:var(--muted);font-size:12px;letter-spacing:.08em;text-transform:uppercase}.grid-card em{position:absolute;right:8px;top:8px;width:28px;height:28px;border-radius:50%;display:grid;place-items:center;background:rgba(247,246,241,.82);font-style:normal}.grid-card.liked em{color:var(--like)}
+    .empty{grid-column:1/-1;padding:15vh 0;text-align:center}.empty h3{font-size:38px;font-weight:300}.empty p{margin:12px auto 24px;max-width:440px;color:var(--muted);font-size:18px}.empty button{padding:10px 18px;border:1px solid var(--line);background:none;font-size:14px;letter-spacing:.13em;text-transform:uppercase}
+    .editor-note{position:absolute;inset:0;z-index:80;display:grid;place-items:center;background:rgba(247,246,241,.96);opacity:0;visibility:hidden;transition:.4s}.editor-note.open{opacity:1;visibility:visible}.editor-note div{text-align:center}.editor-note h2{font-size:48px;font-weight:300}.editor-note p{margin:12px 0 25px;color:var(--muted);font-size:19px}.editor-note button{border:0;border-bottom:1px solid var(--ink);background:none;font-size:15px;letter-spacing:.15em;text-transform:uppercase}
+    @media(max-width:1100px){.grid{grid-template-columns:repeat(3,1fr)}.focus{right:3vw;width:360px;padding:36px}.material{--w:calc(var(--base-w) * .82)}.counter{display:none}}
+    @media(max-width:720px){.wordmark{top:25px}.wordmark strong{font-size:21px}.wordmark span{font-size:10px}.exit{right:18px;top:24px}.mode-row{gap:18px}.mode-row button{font-size:15px;letter-spacing:.1em}.bottomnav{bottom:18px;width:94vw}.sound{right:18px;bottom:86px}.focus{left:20px;right:20px;top:auto;bottom:130px;width:auto;transform:none;padding:22px}.grid{grid-template-columns:repeat(2,1fr)}.index-view{padding:20px 18px 100px}.index-head{grid-template-columns:1fr auto}.index-head h2{display:none}.index-tools input{width:100%}}
+    @media(prefers-reduced-motion:reduce){.scene{transition:none}}
+    /* Unified Melotrip typography and paper tone */
+    :root{--paper:#f4f0ea;--ink:#171714;--muted:#77736d;--faint:#aaa89f;--line:#d5cec3}
+    body,button,input,a,.wordmark span,.counter,.exit,.mode-row button,.editor-entry,.sound,.eyebrow,.focus p,.focus-meta,.focus-actions button,.index-head span,.index-head button,.index-tools,.grid-card small{font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-weight:300}
+    .wordmark strong,.focus h2,.index-head h2,.grid-card b,.empty h3,.editor-note h2{font-family:'Cormorant Garamond',Georgia,serif;font-weight:600;letter-spacing:.08em}
+    .index-tools button.active{color:var(--ink);border-bottom-color:var(--ink)}
+    .creation,.index-view,.editor-note{background:var(--paper)}
+    .wordmark,.bottomnav{background:radial-gradient(ellipse at center,rgba(244,240,234,.98) 0,rgba(244,240,234,.86) 58%,rgba(244,240,234,0) 82%)}
+    .index-head{background:rgba(244,240,234,.95)}
+    .focus,.material .heart,.grid-card em{background:rgba(244,240,234,.9)}
+    .mode-row button,.editor-entry,.focus-actions button{letter-spacing:.14em}
+    .wordmark strong,.focus h2,.index-head h2,.grid-card b,.empty h3,.editor-note h2,.mode-row button,.editor-entry,.index-trigger span,.material-label b{font-family:'Cormorant Garamond',Georgia,serif!important;font-weight:300!important}
+    .wordmark strong{font-size:24px;letter-spacing:.28em}.focus h2{font-size:36px;line-height:1.02;letter-spacing:.045em}.index-head h2{font-size:22px;letter-spacing:.16em}.grid-card b{font-size:15px;letter-spacing:.045em}.mode-row button{font-size:17px;letter-spacing:.13em}.editor-entry{font-size:13px;letter-spacing:.18em}.index-trigger span{font-size:16px;letter-spacing:.2em}.empty h3{font-size:32px}.editor-note h2{font-size:40px}.material-label b{font-size:14px;letter-spacing:.08em}
+
+    /* Full-bleed index navigation with a protected text safe area. */
+    .index-view .index-head{
+      width:calc(100% + 84px);
+      min-height:112px;
+      margin-left:-42px;
+      margin-right:-42px;
+      padding:30px clamp(42px,4.5vw,72px) 26px;
+      column-gap:32px;
+    }
+    .index-view .index-head span{
+      justify-self:start;
+      line-height:1.35;
+      white-space:nowrap;
+    }
+    .index-view .index-head h2{
+      line-height:1.1;
+      white-space:nowrap;
+    }
+    .index-view .index-head button{
+      justify-self:end;
+      line-height:1.35;
+      white-space:nowrap;
+    }
+    @media(max-width:720px){
+      .index-view .index-head{
+        width:calc(100% + 36px);
+        min-height:78px;
+        margin-left:-18px;
+        margin-right:-18px;
+        padding:20px 18px;
+        column-gap:16px;
+      }
+    }
+
+    /* Final layout refinement: compact full-width index bar and balanced focus card. */
+    .index-view .index-head{
+      min-height:84px;
+      padding-top:18px;
+      padding-bottom:17px;
+    }
+    .wordmark{
+      width:min(560px,68vw);
+      background:radial-gradient(ellipse at center,rgba(255,249,213,.97) 0 38%,rgba(255,224,104,.72) 58%,rgba(255,224,104,.28) 76%,rgba(255,224,104,0) 100%)!important;
+    }
+    .bottomnav{
+      width:min(900px,86vw);
+      padding-left:64px;
+      padding-right:64px;
+      background:radial-gradient(ellipse at center,rgba(255,249,213,.97) 0 36%,rgba(255,224,104,.72) 57%,rgba(255,224,104,.26) 77%,rgba(255,224,104,0) 100%)!important;
+    }
+    .focus .eyebrow{font-size:10px;line-height:1.35;text-align:left;letter-spacing:.17em}
+    .focus h2{text-align:center;margin-left:auto;margin-right:auto;max-width:100%}
+    .focus-actions{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+    .focus-actions button{width:100%;min-height:52px;padding:11px 12px!important;display:grid;place-items:center}
+    @media(max-width:720px){
+      .index-view .index-head{min-height:68px;padding-top:13px;padding-bottom:13px}
+      .wordmark{width:min(430px,76vw)}
+      .bottomnav{width:96vw;padding-left:26px;padding-right:26px}
+    }
+  </style>
+  <link rel="stylesheet" href="palette.css">
+</head>
+<body class="universe-body">
+  <main class="creation" id="creation">
+    <header class="topbar">
+      <div class="counter"><b id="countValue">224</b> <span id="countLabel">shared travel memories</span></div>
+      <a class="wordmark" href="index.html"><strong>Melotrip</strong><span>Creation Universe</span></a>
+      <a class="exit" href="explore.html">Exit universe</a>
+    </header>
+
+    <div class="viewport" id="viewport" aria-label="360 degree material gallery">
+      <div class="scene" id="scene"></div>
+    </div>
+
+    <button class="index-trigger" id="indexTrigger"><i>＋</i><span>Index View</span></button>
+
+    <aside class="focus" id="focusPanel" aria-live="polite">
+      <button class="focus-close" id="focusClose" aria-label="Close">×</button>
+      <span class="eyebrow" id="focusEyebrow">Tokyo · Community</span>
+      <h2 id="focusTitle">Morning Departure</h2>
+      <p id="focusDescription">A travel photograph paired with its environmental melody.</p>
+      <div class="focus-meta"><span id="focusDuration">Audio 00:18</span><span id="focusOwner">By Mika</span></div>
+      <div class="focus-actions"><button id="focusPlay">▶ Play sound</button><button id="focusLike">♡ Like</button></div>
+    </aside>
+
+    <button class="sound" id="soundToggle">Sound off ◖</button>
+
+    <nav class="bottomnav" aria-label="Creation material sections">
+      <div class="mode-row">
+        <button class="active" data-mode="community">Community</button>
+        <button data-mode="materials">My Materials</button>
+        <button data-mode="likes">Like List</button>
+      </div>
+      <button class="editor-entry" id="editorEntry" disabled>Create Personal Melody</button>
+    </nav>
+
+    <section class="index-view" id="indexView" aria-hidden="true">
+      <header class="index-head"><span id="indexCount">128 materials</span><h2 id="indexTitle">Community Index</h2><button id="indexClose">× Back to space view</button></header>
+      <div class="index-tools"><input id="searchInput" placeholder="Search location, sound or mood"><button type="button" data-index-sort="place">Location</button><button type="button" data-index-sort="sound">Sound Type</button><button type="button" data-index-sort="mood">Mood</button></div>
+      <div class="grid" id="indexGrid"></div>
+    </section>
+
+    <section class="editor-note" id="editorNote"><div><h2>Personal Melody Editor</h2><p>The selected materials are ready. The editor will be designed in the next phase.</p><button id="editorClose">Back to Like List</button></div></section>
+  </main>
+
+  <script src="global-cursor.js"></script>
+  <script>
+    const places=['Tokyo','Kyoto','Lisbon','Shanghai','Iceland','Swiss Alps','Aegean Sea','Mojave','Kotor','Sri Lanka','Ligurian Coast','Norway'];
+    const names=['Morning Departure','Rain Along the Alley','Tram on the Hill','Night Market Voices','Black Sand Wind','Clouds Above Water','Leaving the Island','Road into Dusk','An Empty Table','Train Through Green','Mediterranean Gold','Cable Over the Valley'];
+    const soundTypes=['station melody','rain texture','street rhythm','market ambience','coastal wind','water resonance','ferry wake','road noise','café ambience','railway field recording','harbour sound','mountain bells'];
+    const owners=['Mika','Elena','Noah','Yun','Sara','Leo','Ari','Mina'];
+    const moods=['Airy','Reflective','Luminous','Restless','Tender','Nocturnal','Playful','Solitary','Warm','Electric','Dreamlike','Ceremonial','Earthy','Weightless','Nostalgic','Rhythmic','Intimate','Expansive','Misty','Radiant','Serene','Vibrant','Melancholic','Curious'];
+    const sprite=[['0%','0%'],['33.333%','0%'],['66.666%','0%'],['100%','0%'],['0%','50%'],['33.333%','50%'],['66.666%','50%'],['100%','50%'],['0%','100%'],['33.333%','100%'],['66.666%','100%'],['100%','100%']];
+    function makeData(count,source){return Array.from({length:count},(_,i)=>{const globalIndex=i+(source==='materials'?224:0),pair=(globalIndex*37)%(places.length*moods.length),placeIndex=pair%places.length,moodIndex=Math.floor(pair/places.length),s=(i*5+(source==='materials'?3:0))%12;return{id:`${source}-${i+1}`,source,title:names[s],place:places[placeIndex],mood:moods[moodIndex],sound:soundTypes[s],owner:source==='materials'?'You':owners[(i*3)%owners.length],duration:12+(i*7)%24,bx:sprite[s][0],by:sprite[s][1],tone:220+(i%16)*24.7,description:`A ${moods[moodIndex].toLowerCase()} ${soundTypes[s]} memory from ${places[placeIndex]}, prepared as a reusable melody fragment.`}})}
+    const community=makeData(224,'community');
+    const materials=makeData(42,'materials');
+    let likedIds=new Set(JSON.parse(localStorage.getItem('melotripLikes')||'[]'));
+    const likeSeed=['community-2','community-4','community-6','community-8','community-10','community-12','community-15','community-18','community-21','community-24','community-29','community-34','community-41','community-48','community-56','community-67','community-78','community-91','community-108','community-126','materials-3','materials-8','materials-14','materials-22'];
+    if(localStorage.getItem('melotripLikeSeedVersion')!=='2'){likeSeed.forEach(id=>likedIds.add(id));localStorage.setItem('melotripLikes',JSON.stringify([...likedIds]));localStorage.setItem('melotripLikeSeedVersion','2')}
+    const all=[...community,...materials];
+    let mode='community',visible=[],focused=null,spotlightId=null,soundOn=false,audioCtx=null,osc=null,indexSort='';
+    let targetYaw=0,yaw=0,targetPitch=0,pitch=0,targetZoom=185,zoom=185,pointerActive=false,focusOffset=0,currentFocusOffset=0,materialEls=[];
+    const creation=document.querySelector('#creation'),scene=document.querySelector('#scene'),viewport=document.querySelector('#viewport'),indexView=document.querySelector('#indexView'),indexGrid=document.querySelector('#indexGrid'),indexTrigger=document.querySelector('#indexTrigger'),focusPanel=document.querySelector('#focusPanel');
+    const countValue=document.querySelector('#countValue'),countLabel=document.querySelector('#countLabel'),editorEntry=document.querySelector('#editorEntry');
+
+    function dataForMode(){const data=mode==='community'?community:mode==='materials'?materials:all.filter(x=>likedIds.has(x.id));return indexSort?[...data].sort((a,b)=>String(a[indexSort]).localeCompare(String(b[indexSort]))):data}
+    function renderSpace(){
+      scene.innerHTML='';focused=null;creation.classList.remove('is-focused');focusPanel.classList.remove('open');indexTrigger.classList.toggle('hidden',mode==='likes');focusOffset=0;
+      const data=dataForMode(),limit=mode==='community'?108:mode==='materials'?42:Math.min(40,data.length),ordered=spotlightId?[data.find(x=>x.id===spotlightId),...data.filter(x=>x.id!==spotlightId)].filter(Boolean):data;visible=ordered.slice(0,limit);spotlightId=null;
+      countValue.textContent=data.length;countLabel.textContent=mode==='community'?'shared travel memories':mode==='materials'?'personal materials':'saved materials';
+      visible.forEach((item,i)=>{
+        const sphereY=1-2*((i+.5)/limit),latitude=Math.asin(sphereY)*180/Math.PI,longitude=(i*137.507764+(i%5)*2.4)%360;
+        const radius=625+((i*29)%74),w=112+((i*47)%128),ratio=[.72,1.34,.82,1.48][i%4],h=Math.round(w/ratio),tilt=((i*13)%11)-5;
+        const card=document.createElement('button');card.className='material'+(likedIds.has(item.id)?' liked':'');card.dataset.id=item.id;card.dataset.angle=longitude;card.dataset.latitude=latitude;
+        card.style.cssText=`--longitude:${longitude}deg;--latitude:${latitude}deg;--radius:${-radius}px;--w:${w}px;--h:${h}px;--tilt:${tilt}deg;--bx:${item.bx};--by:${item.by}`;
+        card.innerHTML=`<span class="heart">${likedIds.has(item.id)?'♥':'♡'}</span><span class="material-label"><b>${item.title}</b><small>${item.place} · ${item.mood} · ${item.sound} · 00:${item.duration}</small></span>`;
+        card.addEventListener('click',e=>{if(e.target.classList.contains('heart')){e.stopPropagation();toggleLike(item,card);return}focusItem(item,card)});
+        let hoverTimer;card.addEventListener('pointerenter',()=>{hoverTimer=setTimeout(()=>{if(soundOn)playTone(item.tone,.045,.48)},250)});card.addEventListener('pointerleave',()=>clearTimeout(hoverTimer));
+        scene.appendChild(card);
+      });materialEls=[...scene.children];updateEditor();renderIndex();
+    }
+    function normalize(a){return((a+180)%360+360)%360-180}
+    function focusItem(item,card){
+      focused=item;creation.classList.add('is-focused');materialEls.forEach(x=>x.classList.toggle('keyboard-focus',x===card));
+      const angle=Number(card.dataset.angle),latitude=Number(card.dataset.latitude),desired=-angle,turns=Math.round((targetYaw-desired)/360);targetYaw=desired+turns*360;targetPitch=Math.max(-80,Math.min(80,-latitude));targetZoom=430;focusOffset=-Math.min(285,window.innerWidth*.13);
+      document.querySelector('#focusEyebrow').textContent=`${item.place} · ${item.mood} · ${item.source==='materials'?'My material':'Community'}`;document.querySelector('#focusTitle').textContent=item.title;document.querySelector('#focusDescription').textContent=item.description;document.querySelector('#focusDuration').textContent=`Audio 00:${item.duration}`;document.querySelector('#focusOwner').textContent=`By ${item.owner}`;updateFocusLike();
+      indexTrigger.classList.add('hidden');focusPanel.classList.add('open');if(soundOn)playTone(item.tone,.07,.8)
+    }
+    function closeFocus(){focused=null;creation.classList.remove('is-focused');targetZoom=185;focusOffset=0;focusPanel.classList.remove('open');indexTrigger.classList.toggle('hidden',mode==='likes');materialEls.forEach(x=>x.classList.remove('keyboard-focus'))}
+    function toggleLike(item,card){likedIds.has(item.id)?likedIds.delete(item.id):likedIds.add(item.id);localStorage.setItem('melotripLikes',JSON.stringify([...likedIds]));if(card){card.classList.toggle('liked',likedIds.has(item.id));card.querySelector('.heart').textContent=likedIds.has(item.id)?'♥':'♡'}updateFocusLike();updateEditor();renderIndex();if(mode==='likes'&&!likedIds.has(item.id))renderSpace()}
+    function updateFocusLike(){const b=document.querySelector('#focusLike');if(!focused)return;const liked=likedIds.has(focused.id);b.textContent=liked?'♥ Liked':'♡ Add to Like List';b.classList.toggle('liked',liked)}
+    function updateEditor(){const n=likedIds.size;editorEntry.disabled=n<3;editorEntry.classList.toggle('ready',n>=3);editorEntry.textContent=`Create Personal Melody · ${n} Selected`}
+
+    creation.addEventListener('pointermove',e=>{if(focused||e.pointerType==='touch'||e.target.closest('.material,.topbar,.bottomnav,.index-trigger,.focus'))return;const rect=creation.getBoundingClientRect(),nx=Math.max(0,Math.min(1,(e.clientX-rect.left)/rect.width)),ny=Math.max(0,Math.min(1,(e.clientY-rect.top)/rect.height));pointerActive=true;targetYaw=(.5-nx)*360;targetPitch=(.5-ny)*164});
+    creation.addEventListener('pointerleave',()=>{pointerActive=false});
+    viewport.addEventListener('pointerdown',e=>{if(!e.target.closest('.material')&&focused)closeFocus()});
+    viewport.addEventListener('wheel',e=>{e.preventDefault();targetZoom=Math.max(-60,Math.min(480,targetZoom-e.deltaY*.22))},{passive:false});
+    function animate(){if(!pointerActive&&!focused)targetYaw+=.018;yaw+=(targetYaw-yaw)*.058;pitch+=(targetPitch-pitch)*.058;zoom+=(targetZoom-zoom)*.07;currentFocusOffset+=(focusOffset-currentFocusOffset)*.07;scene.style.transform=`translate3d(${currentFocusOffset}px,0,${zoom}px) rotateX(${pitch}deg) rotateY(${yaw}deg)`;
+      materialEls.forEach(card=>{const longitude=Math.abs(normalize(Number(card.dataset.angle)+yaw)),latitude=Math.abs(Number(card.dataset.latitude)+pitch),front=Math.max(0,Math.cos(longitude*Math.PI/180)*Math.cos(latitude*Math.PI/180)),selected=focused&&card.dataset.id===focused.id;card.style.opacity=focused?(selected?1:Math.min(.13,(.075+Math.pow(front,1.9)*.92)*.15)):(.075+Math.pow(front,1.9)*.92);card.style.pointerEvents=focused?(selected?'auto':'none'):(front>.14?'auto':'none')});requestAnimationFrame(animate)}
+
+    function renderIndex(query=''){
+      const normalized=query.toLowerCase();
+      let data=dataForMode().filter(item=>(item.title+item.place+item.sound+item.mood).toLowerCase().includes(normalized));
+      if(indexSort==='place'||indexSort==='sound'){
+        const images=new Set();
+        data=data.filter(item=>{const imageKey=`${item.bx}|${item.by}`;if(images.has(imageKey))return false;images.add(imageKey);return true});
+      }
+      document.querySelector('#indexCount').textContent=`${data.length} materials`;
+      document.querySelector('#indexTitle').textContent=mode==='community'?'Community Index':mode==='materials'?'My Materials Index':'Like List';
+      indexGrid.innerHTML='';
+      if(!data.length){
+        indexGrid.innerHTML=`<div class="empty"><h3>${mode==='likes'?'Your Like List is empty':'No materials found'}</h3><p>${mode==='likes'?'Save photographs and melodies from Community or My Materials before creating a personal melody.':'Try another search term.'}</p><button data-community>Explore Community</button></div>`;
+        indexGrid.querySelector('[data-community]')?.addEventListener('click',()=>switchMode('community'));return;
+      }
+      data.forEach(item=>{
+        const card=document.createElement('button');card.className='grid-card'+(likedIds.has(item.id)?' liked':'');card.style.cssText=`--bx:${item.bx};--by:${item.by}`;
+        card.innerHTML=`<i class="grid-image"></i><b>${item.title}</b><small>${item.place} · ${item.mood} · 00:${item.duration}</small><em>${likedIds.has(item.id)?'♥':'♡'}</em>`;
+        card.onclick=event=>{if(event.target.tagName==='EM'){toggleLike(item);return}indexView.classList.remove('open');indexView.setAttribute('aria-hidden','true');setTimeout(()=>{let spaceCard=[...document.querySelectorAll('.material')].find(element=>element.dataset.id===item.id);if(!spaceCard){spotlightId=item.id;renderSpace();spaceCard=[...document.querySelectorAll('.material')].find(element=>element.dataset.id===item.id)}if(spaceCard)focusItem(item,spaceCard)},350)};
+        indexGrid.appendChild(card);
+      });
+    }
+    function switchMode(next){mode=next;document.querySelectorAll('.mode-row button').forEach(b=>b.classList.toggle('active',b.dataset.mode===mode));document.querySelector('#searchInput').value='';targetYaw=0;targetPitch=0;targetZoom=185;indexView.classList.remove('open');indexView.setAttribute('aria-hidden','true');renderSpace()}
+
+    document.querySelectorAll('.mode-row button').forEach(b=>b.onclick=()=>switchMode(b.dataset.mode));indexTrigger.onclick=()=>{if(mode==='likes')return;renderIndex();indexView.classList.add('open');indexView.setAttribute('aria-hidden','false')};document.querySelector('#indexClose').onclick=()=>{indexView.classList.remove('open');indexView.setAttribute('aria-hidden','true')};document.querySelector('#searchInput').oninput=e=>renderIndex(e.target.value);document.querySelector('#focusClose').onclick=closeFocus;document.querySelector('#focusLike').onclick=()=>toggleLike(focused,document.querySelector(`.material[data-id="${focused?.id}"]`));
+    document.querySelectorAll('[data-index-sort]').forEach(button=>button.onclick=()=>{indexSort=indexSort===button.dataset.indexSort?'':button.dataset.indexSort;document.querySelectorAll('[data-index-sort]').forEach(item=>item.classList.toggle('active',item.dataset.indexSort===indexSort));renderIndex(document.querySelector('#searchInput').value)});
+    function initAudio(){if(!audioCtx)audioCtx=new(window.AudioContext||window.webkitAudioContext)();audioCtx.resume()}
+    function playTone(freq,vol=.06,dur=.8){initAudio();if(osc){try{osc.stop()}catch(e){}}const o=audioCtx.createOscillator(),g=audioCtx.createGain();o.type='sine';o.frequency.value=freq;g.gain.setValueAtTime(0,audioCtx.currentTime);g.gain.linearRampToValueAtTime(vol,audioCtx.currentTime+.04);g.gain.exponentialRampToValueAtTime(.001,audioCtx.currentTime+dur);o.connect(g);g.connect(audioCtx.destination);o.start();o.stop(audioCtx.currentTime+dur);osc=o}
+    document.querySelector('#soundToggle').onclick=()=>{soundOn=!soundOn;document.querySelector('#soundToggle').textContent=soundOn?'Sound on ◕':'Sound off ◖';if(soundOn)playTone(392,.06,.7)};document.querySelector('#focusPlay').onclick=()=>{soundOn=true;document.querySelector('#soundToggle').textContent='Sound on ◕';playTone(focused?.tone||392,.1,1.5)};editorEntry.onclick=()=>{if(!editorEntry.disabled)location.href='gallery.html'};document.querySelector('#editorClose').onclick=()=>document.querySelector('#editorNote').classList.remove('open');
+    renderSpace();animate();
+  </script>
+</body>
+</html>
